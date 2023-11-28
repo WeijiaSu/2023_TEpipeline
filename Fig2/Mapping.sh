@@ -24,9 +24,12 @@ genome="/data/zhanglab/Weijia_Su/Genomes/Dro/dm6.fa"
 
 Datapath="/data/zhanglab/Weijia_Su/Nanopore_Raw_Data/210914-fly-vasKD-ovary-RNA/"
 
-for name in Fly_sh-aub_white_RNA-seq.fastq Fly_sh-white_RNA-seq.fastq;
+for fileName in Fly_sh-aub_white_RNA-seq Fly_sh-white_RNA-seq;
 do
-reads=$Datapath$name
+for sub in {1..3};
+do
+reads=$Datapath$fileName"_pseudo_replicate_"$sub".fastq";
+name=$(basename $reads)
 for ref in $HMS $TE $genome;
 do
 refName=$(basename $ref);
@@ -34,7 +37,7 @@ echo $name"_"$refName;
 minimap2 -ax splice $ref $reads -Y -t 16 | samtools view -bS | samtools sort > $name"_"$refName".bam";
 samtools index $name"_"$refName".bam";
 samtools stats $name"_"$refName".bam" | head -n 30  > $name"_"$refName".bam.stat";
-bamCoverage -b $name"_"$refName".bam" -o $name"_"$refName".bam.bw" --scaleFactor 0.88
+done
 done
 done
 

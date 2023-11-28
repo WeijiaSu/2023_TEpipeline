@@ -20,6 +20,6 @@ def split_fastq(file_path,out_name,num_splits=3):
 
 
 # Replace 'your_fastq_file.fastq' with the path to your FASTQ file
-split_fastq('/data/zhanglab/Weijia_Su/Nanopore_Raw_Data/210914-fly-vasKD-ovary-RNA/Fly_sh-aub_white_RNA-seq.fastq',"Fly_sh-aub_white_RNA-seq")
+#split_fastq('/data/zhanglab/Weijia_Su/Nanopore_Raw_Data/210914-fly-vasKD-ovary-RNA/Fly_sh-aub_white_RNA-seq.fastq',"Fly_sh-aub_white_RNA-seq")
 split_fastq('/data/zhanglab/Weijia_Su/Nanopore_Raw_Data/210914-fly-vasKD-ovary-RNA/Fly_sh-white_RNA-seq.fastq',"Fly_sh-white_RNA-seq.fastq")
 

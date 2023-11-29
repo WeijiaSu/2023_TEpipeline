@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## Modify this job script accordingly and submit with the command:
-##    sbatch HPC.sbatch
-
 #SBATCH --nodes=1   # number of nodes
 #SBATCH --ntasks-per-node=16   # 16 processor core(s) per node
 #SBATCH --job-name='Mapping'
@@ -30,7 +27,7 @@ for sub in {1..3};
 do
 reads=$Datapath$fileName"_pseudo_replicate_"$sub".fastq";
 name=$(basename $reads)
-for ref in $HMS $TE $genome;
+for ref in $TE $genome;
 do
 refName=$(basename $ref);
 echo $name"_"$refName;

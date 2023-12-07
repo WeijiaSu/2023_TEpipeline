@@ -43,7 +43,6 @@ def Simulate(start,end,middle,copy,stop,direction):
 		return amplify+last
 
 
-
 def generateFile(filename,start,end,nSeq):
 	f=open(filename,"w")
 	for i in range(0,nSeq):

@@ -22,6 +22,18 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 
 
+def Simulate_1LTR_FL(start,stop,copy,direction,len_LTR):
+	front=0
+	end=len(sequence)-len_LTR
+	template=sequence[front:end]
+	first=Seq(sequence[1:start])
+	second=Seq(sequence[stop:len(sequence)-len_LTR])
+	if direction=="+":
+		return str(second)+ template*copty +str(first)
+	if direction=="-":
+		
+	
+
 def Simulate(start,end,middle,copy,stop,direction):
 	first=Seq(sequence[start:middle])
 	second=Seq(sequence[middle:end])

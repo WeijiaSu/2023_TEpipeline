@@ -22,12 +22,9 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 
 
-def Simulate_FL(start,stop,copy,direction,len_LTR,LTR):
+def Simulate_1LTR_FL(start,stop,copy,direction,len_LTR):
 	front=0
-	if LTR==1:
-		end=len(sequence)-len_LTR
-	if LTR==2:
-		end=len(sequence)
+	end=len(sequence)-len_LTR
 	template=Seq(sequence[front:end])
 	first=Seq(sequence[1:start])
 	second=Seq(sequence[stop:len(sequence)-len_LTR])
@@ -37,7 +34,8 @@ def Simulate_FL(start,stop,copy,direction,len_LTR,LTR):
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
 
-def Simulate(start,end,middle,copy,stop,direction):
+
+""" def Simulate(start,end,middle,copy,stop,direction):
 	first=Seq(sequence[start:middle])
 	second=Seq(sequence[middle:end])
 	if direction=="+":
@@ -55,7 +53,7 @@ def Simulate(start,end,middle,copy,stop,direction):
 	else:
 		amplify=template*copy
 		last=template[:stop]
-		return amplify+last
+		return amplify+last """
 
 
 def generateFile(filename,start,end,nSeq):

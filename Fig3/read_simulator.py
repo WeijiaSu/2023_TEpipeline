@@ -22,7 +22,7 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 
 
-def Simulate_FL(start,stop,copy,directioni,LTR,len_LTR):
+def Simulate_FL(fron,end,start,stop,copy,directioni,LTR,len_LTR):
 	front=0
 	if LTR==1:
 		end=len(sequence)-len_LTR
@@ -36,6 +36,17 @@ def Simulate_FL(start,stop,copy,directioni,LTR,len_LTR):
 	if direction=="-":
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
+def Simulate_LTR_Frg(front,end,mid,start,stop,copy,directioni,LTR,len_LTR):
+	if LTR==5:
+		front=0
+		template=Seq(sequence[front:mid])
+	if LTR==3:
+		end=len_LTR
+		template=Seq(sequence[mid:end])
+	
+	
+
+
 
 
 """ def Simulate(start,end,middle,copy,stop,direction):

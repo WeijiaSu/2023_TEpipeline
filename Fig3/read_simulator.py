@@ -22,9 +22,12 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 
 
-def Simulate_1LTR_FL(start,stop,copy,direction,len_LTR):
+def Simulate_FL(start,stop,copy,directioni,LTR,len_LTR):
 	front=0
-	end=len(sequence)-len_LTR
+	if LTR==1:
+		end=len(sequence)-len_LTR
+	if LTR==2:
+		end=len(sequence)
 	template=Seq(sequence[front:end])
 	first=Seq(sequence[1:start])
 	second=Seq(sequence[stop:len(sequence)-len_LTR])

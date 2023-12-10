@@ -29,28 +29,29 @@ def Simulate_FL(fron,end,start,stop,copy,directioni,LTR,len_LTR):
 	if LTR==2:
 		end=len(sequence)
 	template=Seq(sequence[front:end])
-	first=Seq(sequence[1:start])
+	first=Seq(sequence[0:start])
 	second=Seq(sequence[stop:len(sequence)-len_LTR])
 	if direction=="+":
 		return str(second)+ str(template)*copty +str(first)
 	if direction=="-":
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
-def Simulate_LTR_Frg(front,end,mid,start,stop,copy,directioni,LTR,len_LTR):
+def Simulate_LTR_Frg(front,end,mid,start,stop,copy,direction,LTR,len_LTR):
 	if LTR==5:
 		front=0
 		template=Seq(sequence[front:mid])
 	if LTR==3:
 		end=len_LTR
 		template=Seq(sequence[mid:end])
-	
-	
+	first=Seq(sequence[0:start])
+	second=Seq(sequence[stop:len(sequence)-len_LTR])
+	if direction=="+":
+		return str(second)+ str(template)*copty +str(first)
+	if direction=="-":
+		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 
-
-
-
-""" def Simulate(start,end,middle,copy,stop,direction):
-	first=Seq(sequence[start:middle])
+def Simulate(front,end,start,stop,copy,direction):
+	first=Seq(sequence[front:middle])
 	second=Seq(sequence[middle:end])
 	if direction=="+":
 		template=str(second)+str(first)

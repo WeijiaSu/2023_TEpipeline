@@ -22,7 +22,7 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 
 
-def simulate(fron,end,start,top,copy,direction,LTR,len_LTR):
+def simulate(front,end,start,stop,copy,direction,LTR,len_LTR):
 	if LTR==1:
 		front=0
 		end=len(sequence)-len_LTR
@@ -42,12 +42,16 @@ def simulate(fron,end,start,top,copy,direction,LTR,len_LTR):
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
 
-def generateFile(filename,start,end,nSeq):
+def generate_1LTR_FL(seq,filename,nSeq):
+	length=len(sequence)
 	f=open(filename,"w")
 	for i in range(0,nSeq):
-		middle=random.randint(start,end)
+		front=random.randint(0,length)
+		end=random.randint(front,length)
+		start=random.randint(front,end)
+		stop=random.randint(front,end)
+		direction=random.choice(["+","-"])
 		copy=random.randint(0,11)
-		stop=random.randint(start,end)
 		direction=random.choice(["+","-"])
 		parameter=[start,end,middle,copy,stop,direction]
 		parameter=[str(c) for c in parameter]

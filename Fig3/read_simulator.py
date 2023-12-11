@@ -33,6 +33,8 @@ def simulate(front,end,start,stop,copy,direction,LTR,len_LTR):
 		front=0
 	if LTR==3:
 		end=len(sequence)
+	if LTR==0:
+		
 	template=Seq(sequence[front:end])
 	first=Seq(sequence[front:start])
 	second=Seq(sequence[stop:end])
@@ -42,7 +44,7 @@ def simulate(front,end,start,stop,copy,direction,LTR,len_LTR):
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
 
-def generate_1LTR_FL(seq,filename,nSeq):
+def generate_(seq,filename,nSeq):
 	length=len(sequence)
 	f=open(filename,"w")
 	for i in range(0,nSeq):
@@ -53,6 +55,7 @@ def generate_1LTR_FL(seq,filename,nSeq):
 		direction=random.choice(["+","-"])
 		copy=random.randint(0,11)
 		direction=random.choice(["+","-"])
+		for ltr in [1,2,5,3,0]
 		parameter=[start,end,middle,copy,stop,direction]
 		parameter=[str(c) for c in parameter]
 		name=filename+str(i+1)+"_"+"_".join(parameter)

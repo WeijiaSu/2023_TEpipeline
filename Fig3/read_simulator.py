@@ -35,49 +35,12 @@ def simulate(fron,end,start,top,copy,direction,LTR,len_LTR):
 		end=len(sequence)
 	template=Seq(sequence[front:end])
 	first=Seq(sequence[front:start])
-	second=Seq(sequence[stop:len(sequence)-len_LTR])
+	second=Seq(sequence[stop:end])
 	if direction=="+":
 		return str(second)+ str(template)*copty +str(first)
 	if direction=="-":
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
-
-#def Simulate_LTR_Frg(front,end,mid,start,stop,copy,direction,LTR,len_LTR):
-#	if LTR==5:
-#		front=0
-#		template=Seq(sequence[front:mid])
-#	if LTR==3:
-#		end=len_LTR
-#		template=Seq(sequence[mid:end])
-#	first=Seq(sequence[0:start])
-#	second=Seq(sequence[stop:len(sequence)-len_LTR])
-#	if direction=="+":
-#		return str(second)+ str(template)*copty +str(first)
-#	if direction=="-":
-#		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
-#
-#def Simulate(front,end,start,stop,copy,direction):
-#	
-#	template=Seq(sequence[front:end])
-#	first=Seq(sequence[front:middle])
-#	second=Seq(sequence[middle:end])
-#	if direction=="+":
-#		template=str(second)+str(first)
-#	else:
-#		first=str(first.reverse_complement())
-#		second=str(second.reverse_complement())
-#		template=first+second
-#	if copy==0 and direction=="+":
-#		stop1=random.randint(0,len(str(first)))
-#		return str(second)+str(first)[:stop1]
-#	elif copy==0 and direction=="-":
-#		stop1=random.randint(0,len(str(second)))
-#		return str(Seq(sequence[start:middle]).reverse_complement())+str(Seq(sequence[middle:end]).reverse_complement())[0:stop1]
-#	else:
-#		amplify=template*copy
-#		last=template[:stop]
-#		return amplify+last """
-#
 
 def generateFile(filename,start,end,nSeq):
 	f=open(filename,"w")

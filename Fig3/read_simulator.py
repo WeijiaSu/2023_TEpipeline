@@ -42,20 +42,6 @@ def simulate(fron,end,start,top,copy,direction,LTR,len_LTR):
 		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
 
-def Simulate_FL(fron,end,start,stop,copy,directioni,LTR,len_LTR):
-	front=0
-	if LTR==1:
-		end=len(sequence)-len_LTR
-	if LTR==2:
-		end=len(sequence)
-	template=Seq(sequence[front:end])
-	first=Seq(sequence[0:start])
-	second=Seq(sequence[stop:len(sequence)-len_LTR])
-	if direction=="+":
-		return str(second)+ str(template)*copty +str(first)
-	if direction=="-":
-		return str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
-	
 def Simulate_LTR_Frg(front,end,mid,start,stop,copy,direction,LTR,len_LTR):
 	if LTR==5:
 		front=0

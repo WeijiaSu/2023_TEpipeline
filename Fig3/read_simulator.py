@@ -33,8 +33,6 @@ def simulate(front,end,start,stop,copy,direction,LTR,len_LTR):
 		front=0
 	if LTR==3:
 		end=len(sequence)
-	if LTR==0:
-		
 	template=Seq(sequence[front:end])
 	first=Seq(sequence[front:start])
 	second=Seq(sequence[stop:end])
@@ -55,7 +53,7 @@ def generate_(seq,filename,nSeq):
 		direction=random.choice(["+","-"])
 		copy=random.randint(0,11)
 		direction=random.choice(["+","-"])
-		for ltr in [1,2,5,3,0]
+		for ltr in [1,2,5,3,0]:
 		parameter=[start,end,middle,copy,stop,direction]
 		parameter=[str(c) for c in parameter]
 		name=filename+str(i+1)+"_"+"_".join(parameter)

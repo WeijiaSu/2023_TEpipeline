@@ -23,6 +23,7 @@ TEseq=list(SeqIO.parse(reference,"fasta"))
 sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 nSeq=args.NumberofSeq
+nSeq=int(nSeq)
 len_LTR=args.LTRlength
 
 

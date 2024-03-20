@@ -24,7 +24,7 @@ sequence=str(TEseq[0].seq)
 ID=TEseq[0].id
 nSeq=args.NumberofSeq
 nSeq=int(nSeq)
-len_LTR=args.LTRlength
+len_LTR=int(args.LTRlength)
 
 
 def simulate(front,end,copy,direction,LTR,len_LTR):
@@ -45,8 +45,9 @@ def simulate(front,end,copy,direction,LTR,len_LTR):
 	second=Seq(sequence[stop:end])
 	if direction=="+":
 		parameter=["LTR:"+str(LTR),front,end,start,stop,copy,direction]
-		return parameter,str(second)+ str(template)*copty +str(first)
+		return parameter,str(second)+ str(template)*copy +str(first)
 	if direction=="-":
+		parameter=["LTR:"+str(LTR),front,end,start,stop,copy,direction]
 		return parameter,str(first.reverse_complement())+str(template.reverse_complement())*copy+str(second.reverse_complement())
 	
 
@@ -54,14 +55,15 @@ def generate_(seq,filename,nSeq):
 	length=len(sequence)
 	f=open(filename,"w")
 	for i in range(0,nSeq):
-		for ltr in [1,2,5,3,0]:
+		for LTR in [1,2,5,3,0]:
 			for i in range(0,nSeq):
 				front=random.randint(0,length)
 				end=random.randint(front,length)
 				copy=random.randint(0,11)
 				direction=random.choice(["+","-"])
-				parameter,read=Simulate(front,end,copy,direction,LTR,len_LTR)
-				name=filename+"_"+str(i+1)+"_"+"_".join(parameter)
+				parameters,read=simulate(front,end,copy,direction,LTR,len_LTR)
+				parameters=[str(i) for i in parameters]
+				name=ID+"_"+str(i+1)+"_"+"_".join(parameters)
 				f.write(">"+name+"\n"+read+"\n")
 	f.close()
 
@@ -78,7 +80,7 @@ def FalsePostive(filename,nSeq):
 		amplify=template*copy
 		parameter=[start,end,copy]
 		parameter=[str(c) for c in parameter]
-		name=filename+"_"+str(i+1)+"_"+"FP_"+"_".join(parameter)
+		name=ID+"_"+str(i+1)+"_"+"FP_"+"_".join(parameter)
 		f.write(">"+name+"\n"+amplify+"\n")
 	f.close()
 

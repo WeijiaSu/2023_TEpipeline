@@ -17,5 +17,5 @@
 ## LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 
 
-python3 split.py
-#python3 /data/zhanglab/Weijia_Su/2023_Pipeline/Script/Split_fastq.py
+#python3 split.py
+python3 /data/zhanglab/Weijia_Su/2023_Pipeline/Script/Split_fastq.py

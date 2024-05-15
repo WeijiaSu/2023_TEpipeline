@@ -15,13 +15,12 @@
 
 
 module load samtools
-HMS="/data/zhanglab/Weijia_Su/CommonDataSet/TE_full/HMS-Beagle.fasta"
 TE="/data/zhanglab/Weijia_Su/CommonDataSet/TE_full.fa"
 genome="/data/zhanglab/Weijia_Su/Genomes/Dro/dm6.fa"
 
-Datapath="/data/zhanglab/Weijia_Su/Nanopore_Raw_Data/210914-fly-vasKD-ovary-RNA/"
+Datapath="/data/zhanglab/Weijia_Su/2023_Pipeline/data/Module1/"
 
-for fileName in Fly_sh-aub_white_RNA-seq Fly_sh-white_RNA-seq;
+for fileName in Fly_sh-aub_white_RNA-seq Fly_sh-white_RNA-seq.fastq;
 do
 for sub in {1..3};
 do

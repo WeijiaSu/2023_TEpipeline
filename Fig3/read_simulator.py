@@ -5,7 +5,6 @@ import os
 import random
 from Bio.Seq import Seq
 
-random.seed(2)
 pd.set_option("display.max_columns",40)
 
 
@@ -15,6 +14,7 @@ parser.add_argument("-Ref","--RefSeq")
 parser.add_argument("-out","--Outname")
 parser.add_argument("-nSeq","--NumberofSeq")
 parser.add_argument("-len_LTR","--LTRlength")
+parser.add_argument("-seed","--SEED",default=2)
 args=parser.parse_args()
 
 reference=args.RefSeq
@@ -25,7 +25,7 @@ ID=TEseq[0].id
 nSeq=args.NumberofSeq
 nSeq=int(nSeq)
 len_LTR=int(args.LTRlength)
-
+random.seed(int(args.SEED))
 
 def simulate(front,end,copy,direction,LTR,len_LTR):
 	if LTR==1:
@@ -54,17 +54,16 @@ def simulate(front,end,copy,direction,LTR,len_LTR):
 def generate_(seq,filename,nSeq):
 	length=len(sequence)
 	f=open(filename,"w")
-	for i in range(0,nSeq):
-		for LTR in [1,2,5,3,0]:
-			for i in range(0,nSeq):
-				front=random.randint(0,length)
-				end=random.randint(front,length)
-				copy=random.randint(0,11)
-				direction=random.choice(["+","-"])
-				parameters,read=simulate(front,end,copy,direction,LTR,len_LTR)
-				parameters=[str(i) for i in parameters]
-				name=ID+"_"+str(i+1)+"_"+"_".join(parameters)
-				f.write(">"+name+"\n"+read+"\n")
+	for LTR in [1,2,5,3,0]:
+		for i in range(0,nSeq):
+			front=random.randint(0,length)
+			end=random.randint(front,length)
+			copy=random.randint(0,11)
+			direction=random.choice(["+","-"])
+			parameters,read=simulate(front,end,copy,direction,LTR,len_LTR)
+			parameters=[str(i) for i in parameters]
+			name=ID+"_"+str(i+1)+"_"+"_".join(parameters)
+			f.write(">"+name+"\n"+read+"\n")
 	f.close()
 
 def FalsePostive(filename,nSeq):

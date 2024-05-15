@@ -4,8 +4,10 @@ import random
 import sys
 import os
 
-def load_fasta(file_path):
-    return list(SeqIO.parse(file_path, "fasta"))
+def load_fasta(file_path,chromosome):
+	genomefile=list(SeqIO.parse(file_path, "fasta"))
+	genomefile=[i for i in genomefile if i.id in chromosome]
+    return genomefile
 
 def save_fasta(sequences, file_path):
     SeqIO.write(sequences, file_path, "fasta")
@@ -17,8 +19,13 @@ def simulate_insertion(genome, transposon, insertion_points):
 
 fly = ["chr2L", "chr2R", "chr3L", "chr3R", "chr4", "chrM"]
 
-def select_genome:
-	
+def select_genome(genome):
+    genome_seq = random.choice(genome_sequences)
+    random_point=random.randint(0, len(genome_seq.seq)-100000)
+    random_lengh=random.randint(100,100000)
+    random_seq=genome_seq.seq[random_point:random_point+random_lengh]
+    return (genome_seq.id,random_seq)
+
 
 def main():
     # Load genome and transposon sequences
@@ -46,7 +53,6 @@ def main():
     # Save all modified genome sequences
     output_file = "modified_fly_genomes.fasta"
     save_fasta(modified_genome_sequences, output_file)
-    print(f"Modified genomes saved to {output_file}")
 
 if __name__ == "__main__":
     main()

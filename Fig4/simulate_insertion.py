@@ -3,9 +3,10 @@ import random
 import sys
 import os
 
-def load_fasta(file_path,chromosome):
-	genomefile=list(SeqIO.parse(file_path, "fasta"))
-	genomefile=[i for i in genomefile if i.id in chromosome]
+def load_fasta(file_path,chromosome=None):
+    genomefile=list(SeqIO.parse(file_path, "fasta"))
+    if chromosome != None:
+        genomefile=[i for i in genomefile if i.id in chromosome]
     return genomefile
 
 def save_fasta(sequences, file_path):
@@ -31,7 +32,7 @@ def main():
     
     genome_sequences = load_fasta(genome_file,fly)
     print("Reading genome file...")
-	transposon_sequences = load_fasta(transposon_file)
+    transposon_sequences = load_fasta(transposon_file)
     print("Reading transposon file...")
     # List to hold modified genome sequences
 	
@@ -42,15 +43,15 @@ def main():
         for _ in range(10):  # 100 insertions per transposon
             # Choose a random genome sequence for each insertion
             print("Simulating %s #%s "%(transposon.id,_))
-			genome=select_genome(genome_sequences)
-			genome.seq=genome[-1]
+            genome=select_genome(genome_sequences)
+            genome.seq=genome[-1]
 			# Choose a random insertion point within the genome sequence
             insertion_point = random.randint(0, len(genome.seq))
             # Simulate insertion
             genome.seq = genome.seq[:point] + transposon.seq + genome.seq[point:]
-		    genome.id="_".joint(genome[0:3],transposon.id,str(insertion_point))
-   			seq_record = SeqRecord(Seq(genome.seq), id=genome.id, description="")
-			modified_genome_sequences.append(seq_record)
+            genome.id="_".joint(genome[0:3],transposon.id,str(insertion_point))
+            seq_record = SeqRecord(Seq(genome.seq), id=genome.id, description="")
+            modified_genome_sequences.append(seq_record)
 
     output_file = sys.argv[3]
     save_fasta(modified_genome_sequences, output_file)

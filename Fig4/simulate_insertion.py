@@ -1,5 +1,4 @@
-
-import Bio import SeqIO
+from Bio import SeqIO
 import random
 import sys
 import os
@@ -31,17 +30,19 @@ def main():
     transposon_file = sys.argv[2]
     
     genome_sequences = load_fasta(genome_file,fly)
-    transposon_sequences = load_fasta(transposon_file)
-    
+    print("Reading genome file...")
+	transposon_sequences = load_fasta(transposon_file)
+    print("Reading transposon file...")
     # List to hold modified genome sequences
 	
     modified_genome_sequences = []
     
     # Simulate 100 insertions for each transposon in different genome sequences
     for transposon in transposon_sequences:
-        for _ in range(100):  # 100 insertions per transposon
+        for _ in range(10):  # 100 insertions per transposon
             # Choose a random genome sequence for each insertion
-            genome=select_genome(genome_sequences)
+            print("Simulating %s #%s "%(transposon.id,_))
+			genome=select_genome(genome_sequences)
 			genome.seq=genome[-1]
 			# Choose a random insertion point within the genome sequence
             insertion_point = random.randint(0, len(genome.seq))

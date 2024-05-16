@@ -18,11 +18,11 @@ def simulate_insertion(genome, transposon, insertion_points):
     return genome
 
 def select_genome(genome):
-    genome_seq = random.choice(genome_sequences)
+    genome_seq = random.choice(genome)
     random_point=random.randint(0, len(genome_seq.seq)-100000)
     random_lengh=random.randint(100,100000)
     random_seq=genome_seq.seq[random_point:random_point+random_lengh]
-    return (genome_seq.id,random_point,random_point+random_seq,random_seq)
+    return [genome_seq.id,random_point,random_point+random_lengh,random_seq]
 
 fly = ["chr2L", "chr2R", "chr3L", "chr3R", "chr4", "chrM"]
 def main():

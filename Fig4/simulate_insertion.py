@@ -21,10 +21,11 @@ def select_genome(genome):
     genome_seq = random.choice(genome)
     random_point=random.randint(0, len(genome_seq.seq)-100000)
     random_lengh=random.randint(100,100000)
+    print("selected: %s(%s): %s - %s"%(genome_seq.id,len(genome_seq.seq),random_point,random_point+random_lengh))
     random_seq=genome_seq.seq[random_point:random_point+random_lengh]
     return [genome_seq.id,random_point,random_point+random_lengh,random_seq]
 
-fly = ["chr2L", "chr2R", "chr3L", "chr3R", "chr4", "chrM"]
+fly = ["chr2L", "chr2R", "chr3L", "chr3R", "chr4"]
 def main():
     # Load genome and transposon sequences
     genome_file = sys.argv[1]
@@ -42,7 +43,7 @@ def main():
     for transposon in transposon_sequences:
         for _ in range(10):  # 100 insertions per transposon
             # Choose a random genome sequence for each insertion
-            print("Simulating %s #%s "%(transposon.id,_))
+            print("Simulating %s #%s "%(transposon.id,_+1))
             genome=select_genome(genome_sequences)
             genome.seq=genome[-1]
 			# Choose a random insertion point within the genome sequence
